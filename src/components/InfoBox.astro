@@ -1,0 +1,14 @@
+---
+interface Props {
+  important?: boolean;
+}
+
+const { important } = Astro.props;
+---
+
+<div
+  class={"rounded-2xl p-5 border border-white/5" +
+    (important ? " bg-orange-500/5" : " bg-slate-100/5")}
+>
+  <slot />
+</div>

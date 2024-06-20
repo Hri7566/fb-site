@@ -1,0 +1,33 @@
+---
+import { Image } from "astro:assets";
+
+interface Props {
+  color: string;
+  href: string;
+  icon?: {
+    src: string | ImageMetadata;
+    alt: string;
+    width: number;
+  };
+}
+
+const { color, icon, href } = Astro.props;
+---
+
+<a
+  target="_blank"
+  href={href}
+  class="p-2 inline-flex items-center text-xl font-semibold text-center align-middle my-10 mx-20 rounded-xl border border-white/20"
+  style={"background: " + color + ";"}
+>
+  {
+    icon ? (
+      typeof icon.src == "string" ? (
+        <img class="p-2" src={icon.src} alt={icon.alt} width={icon.width} />
+      ) : (
+        <Image class="p-2" src={icon.src} alt={icon.alt} width={icon.width} />
+      )
+    ) : undefined
+  }
+  <slot />
+</a>
